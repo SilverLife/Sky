@@ -1,0 +1,3 @@
+[submodule "Sky/Shared"]
+	path = Sky/Shared
+	url = https://github.com/SilverLife/Shared.git
