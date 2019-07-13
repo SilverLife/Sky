@@ -86,7 +86,7 @@ namespace SnakeGame
 
 		void SnakeGame::GenerateMoveableWalls(uint walls_count)
 		{
-			const auto[width, height] = _field.Size();
+			const auto [width, height] = _field.Size();
 			for (uint i = 0; i < walls_count; i++)
 			{
 				const Point pos(std::rand() % width, std::rand() % height);
@@ -182,8 +182,8 @@ namespace SnakeGame
 			}
 
 			Drawing::DrawBorder(width + 1, height + 2);
-			GenerateWalls(50);
-			GenerateMoveableWalls(1);
+			GenerateWalls(1);
+			GenerateMoveableWalls(40);
 		}
 
 		SnakeGame::SnakeGame(Shared::BmpHelper::Bmp bmp)

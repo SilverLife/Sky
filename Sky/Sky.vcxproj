@@ -137,6 +137,10 @@
     <ClInclude Include="Shared\Geometry\RectangleSize.h" />
     <ClInclude Include="GameLogic\SnakeGame.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Maps\map1.bmp" />
+    <Image Include="Maps\map2.bmp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

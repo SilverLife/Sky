@@ -14,6 +14,7 @@ namespace SnakeGame
 {
 	namespace GameLogic
 	{
+		// Основной класс игры. Вся игра осуществляется через интерфейс этого класса.
 		class SnakeGame
 		{
 			enum class FieldObjectType : unsigned char

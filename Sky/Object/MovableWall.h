@@ -10,8 +10,6 @@ namespace SnakeGame
 {
 	namespace Object
 	{
-
-
 		namespace MoveableWallActions
 		{
 			struct MoveAction
@@ -56,6 +54,8 @@ namespace SnakeGame
 			}
 		}
 
+		// Движущаяся стена. Двигается по определенному алгоритму, заданному массивом actions
+		// Каждый ticks_to_move вызов функции PerformTick смещает стену к следующей точке.
 		class MoveableWall
 		{
 			Point _start_position;

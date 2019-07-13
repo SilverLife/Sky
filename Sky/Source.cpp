@@ -14,9 +14,8 @@ int main()
 {
 	srand(0);
 
-	
-
-	SnakeGame::GameLogic::SnakeGame _game(Shared::BmpHelper::Bmp("Maps\\map2.bmp"));
+	//SnakeGame::GameLogic::SnakeGame _game(Shared::BmpHelper::Bmp("Maps\\map2.bmp"));
+	SnakeGame::GameLogic::SnakeGame _game(50,40,5);
 
 	std::thread input_thread([&_game]()
 	{
