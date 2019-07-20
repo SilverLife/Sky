@@ -3,8 +3,11 @@
 
 #include "Shared\BmpHelper\Bmp.h"
 #include "Shared\FieldData\Field.h"
+#include "Shared\FieldData\WavePathFinder.h"
 #include "Object\Snake.h"
 #include "Object\MovableWall.h"
+
+#include "Shared\ConsoleHelper\Form.h"
 
 #include <filesystem>
 
@@ -25,12 +28,18 @@ namespace SnakeGame
 				Count
 			};
 
+			using PathFinder = Shared::FieldData::WavePathFinder<FieldObjectType, short>;
+
 			Shared::FieldData::Field<FieldObjectType, PointCoordsType> _field;
+
+			std::vector<PathFinder> _wave_path_finders;
 			Object::Snake _snake;
 
 			std::vector<Object::MoveableWall> _moveable_walls;
 
 			bool _is_game_active = true;
+
+			std::unique_ptr<Shared::ConsoleHelper::Form> _info_form;
 
 			inline void PrintObject(Point position, FieldObjectType object_type);
 
@@ -50,7 +59,8 @@ namespace SnakeGame
 		public:
 			SnakeGame(PointCoordsType width, PointCoordsType height, uint snake_length);
 			SnakeGame(Shared::BmpHelper::Bmp bmp);
-
+			
+			void Init();
 
 			~SnakeGame();
 

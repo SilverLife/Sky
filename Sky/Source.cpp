@@ -8,14 +8,19 @@
 
 #include "Shared\BmpHelper\Bmp.h"
 
+#include "Shared\ConsoleHelper\ConsoleHelper.h"
+#include "Shared\ConsoleHelper\Label.h"
+#include "Shared\ConsoleHelper\Form.h"
+
+#include "Shared\Container\TrackedVariable.h"
+
 using namespace std;
 
 int main()
 {
-	srand(0);
-
-	//SnakeGame::GameLogic::SnakeGame _game(Shared::BmpHelper::Bmp("Maps\\map2.bmp"));
-	SnakeGame::GameLogic::SnakeGame _game(50,40,5);
+	SnakeGame::GameLogic::SnakeGame _game(Shared::BmpHelper::Bmp("Maps\\map2.bmp"));
+	//SnakeGame::GameLogic::SnakeGame _game(80,40,10);
+	_game.Init();
 
 	std::thread input_thread([&_game]()
 	{
@@ -32,7 +37,7 @@ int main()
 				case 'd': _game.ChangeSnakeDirection({ 1,0 }); break;
 			}
 
-		} while (ch != 27);
+		} while (ch != 27 && _game.IsGameActive());
 		_game.Stop();
 	});
 
@@ -42,6 +47,8 @@ int main()
 		_game.PrintField();
 		std::this_thread::sleep_for(std::chrono::microseconds(20000));
 	}
+
+	Shared::ConsoleHelper::Console().PrintString({ 10,50 }, "Game over!!! Press key");
 
 	input_thread.join();
 	

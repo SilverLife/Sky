@@ -1,8 +1,11 @@
 ﻿// ☕ Привет
 
 #include "SnakeGame.h"
-#include "Drawing\PrintHelper.h"
+#include "Shared\ConsoleHelper\PrintHelper.h"
 #include "Shared\ConsoleHelper\ConsoleHelper.h"
+
+#include <thread>
+#include <future>
 
 #include <fstream>
 
@@ -53,7 +56,7 @@ namespace SnakeGame
 		{
 			if (object_type != FieldObjectType::Empty && _field.Object(position) != FieldObjectType::Empty)
 			{
-				throw std::logic_error("Incorrect to object type in set object");
+				//throw std::logic_error("Incorrect to object type in set object");
 			}
 
 			_field.SetObject(position, object_type);
@@ -158,6 +161,7 @@ namespace SnakeGame
 
 			const auto tail_to_remove = _snake.Move(new_snake_head_position);
 			MoveObject(tail_to_remove, new_snake_head_position);
+			//SetObject(tail_to_remove, FieldObjectType::Wall);
 		}
 		
 		void SnakeGame::SplitSnake(Point position)
@@ -170,7 +174,7 @@ namespace SnakeGame
 		}
 		
 		SnakeGame::SnakeGame(PointCoordsType width, PointCoordsType height, uint snake_length)
-			: _field(width, height),
+			: _field(width, height),			  
 			  _snake(Point{ width / 2, height / 2 })
 		{
 			SetObject(_snake.HeadPosition(), FieldObjectType::Snake);
@@ -181,9 +185,9 @@ namespace SnakeGame
 				SetObject(_snake.TailPosition(), FieldObjectType::Snake);
 			}
 
-			Drawing::DrawBorder(width + 1, height + 2);
+			Shared::ConsoleHelper::DrawBorder({ 0,0 }, width + 1, height + 2);
 			GenerateWalls(1);
-			GenerateMoveableWalls(40);
+			//GenerateMoveableWalls(40);
 		}
 
 		SnakeGame::SnakeGame(Shared::BmpHelper::Bmp bmp)
@@ -206,7 +210,7 @@ namespace SnakeGame
 					{
 						_snake.Move({ i, j });
 						SetObject(_snake.HeadPosition(), FieldObjectType::Snake);
-						for (uint i = 1; i < 80; i++)
+						for (uint i = 1; i < 20; i++)
 						{
 							_snake.AddTail(_snake.TailPosition() + Point{ 1,0 });
 							SetObject(_snake.TailPosition(), FieldObjectType::Snake);
@@ -223,7 +227,17 @@ namespace SnakeGame
 				}
 			}
 
-			Drawing::DrawBorder(width + 1, height + 2);
+			Shared::ConsoleHelper::DrawBorder({ 0,0 }, width + 1, height + 2);
+		}
+
+		void SnakeGame::Init()
+		{
+			_info_form = std::make_unique<Shared::ConsoleHelper::Form>(Point{ _field.Size()._width + 2, 0 }, Shared::ConsoleHelper::Form::FormSize{ 40, 30 });
+			
+			for (int i = 0; i < 10; i++)
+			{
+				_wave_path_finders.emplace_back(_field);
+			}
 		}
 
 		SnakeGame::~SnakeGame()
@@ -266,6 +280,37 @@ namespace SnakeGame
 			}
 
 			MoveSnake();
+			
+			std::vector<std::future<Point>> _path_finders_results;
+			for (auto& path_finder : _wave_path_finders)
+			{
+				_path_finders_results.emplace_back(std::async(std::launch::async, [&path_finder]() {return path_finder.Find({ 1,1 }, { 100,40 }); }));
+			}
+
+			for (auto& fut : _path_finders_results)
+			{
+				fut.get();
+			}
+			
+			//_wave_path_finder.Find({ 1,1 }, { 100,40 });
+			//_wave_path_finder.Find({ 1,1 }, { 100,40 });
+			//_wave_path_finder.Find({ 1,1 }, { 100,40 });
+			//_wave_path_finder.Find({ 1,1 }, { 100,40 });
+			//_wave_path_finder.Find({ 1,1 }, { 100,40 });
+			//_wave_path_finder.Find({ 1,1 }, { 100,40 });
+			//_wave_path_finder.Find({ 1,1 }, { 100,40 });
+			//_wave_path_finder.Find({ 1,1 }, { 100,40 });
+			//_wave_path_finder.Find({ 1,1 }, { 100,40 });
+			//_wave_path_finder.Find({ 1,1 }, { 100,40 });
+		//	for (auto point : path)
+			//{
+			//	SetObject(point, FieldObjectType::Wall);
+			//}
+
+			//for (auto point : path)
+			//{
+			//	SetObject(point, FieldObjectType::Wall);
+			//}
 
 			//SetObject(tail_to_remove, FieldObjectType::Empty);
 			//SetObject(new_snake_head_position, FieldObjectType::Snake);
