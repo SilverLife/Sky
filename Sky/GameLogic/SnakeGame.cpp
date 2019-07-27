@@ -87,11 +87,6 @@ namespace SnakeGame
 
 				SetObject(pos, FieldObjectType::Wall);
 			}
-
-			for (auto point : test_points)
-			{
-				SetObject(point, FieldObjectType::Wall);
-			}
 		}
 
 		void SnakeGame::GenerateMoveableWalls(uint walls_count)
@@ -194,8 +189,8 @@ namespace SnakeGame
 			}
 
 			Shared::ConsoleHelper::DrawBorder({ 0,0 }, width + 1, height + 2);
-			GenerateWalls(0);
-			//GenerateMoveableWalls(40);
+			GenerateWalls(20);
+			GenerateMoveableWalls(40);
 		}
 
 		SnakeGame::SnakeGame(Shared::BmpHelper::Bmp bmp)
@@ -241,8 +236,7 @@ namespace SnakeGame
 
 		void SnakeGame::Init()
 		{
-			_info_form = std::make_unique<Shared::ConsoleHelper::Form>(Point{ 0, 50 }, Shared::ConsoleHelper::Form::FormSize{ 40, 30 });
-			//_info_form = std::make_unique<Shared::ConsoleHelper::Form>(Point{ _field.Size()._width + 2, 0 }, Shared::ConsoleHelper::Form::FormSize{ 40, 30 });
+			_info_form = std::make_unique<Shared::ConsoleHelper::Form>(Point{ _field.Size()._width + 2, 0 }, Shared::ConsoleHelper::Form::FormSize{ 40, 30 });
 			
 			auto& action_time_label = _info_form->AddLabel({ 1,1 });
 			_action_time.SetCallbackFunctor(Shared::ConsoleHelper::LabelWrapper<double>(&action_time_label, std::string("Action time (ms): ")));
@@ -294,50 +288,9 @@ namespace SnakeGame
 			MoveSnake();
 			
 
-			for (auto point : next_points)
-			{
-				SetObject(point, FieldObjectType::Empty);
-			}
-			_wave_path_finder.FindNextPoints(_snake.HeadPosition(), test_points, next_points);
-			for (auto point : next_points)
-			{
-				SetObject(point, FieldObjectType::Snake);
-			}
+			//_wave_path_finder.FindNextPoints(_snake.HeadPosition(), test_points, next_points);
 
 
-			//std::vector<std::future<std::vector<Point>>> _path_finders_results;
-			//for (auto& path_finder : _wave_path_finders)
-			//{
-			//	_path_finders_results.emplace_back(std::async(std::launch::async, [&path_finder]() {return path_finder.Find({ 1,1 }, { 100,40 }); }));
-			//}
-			//
-			//for (auto& fut : _path_finders_results)
-			//{
-			//	fut.get();
-			//}
-			
-			//_wave_path_finder.Find({ 1,1 }, { 100,40 });
-			//_wave_path_finder.Find({ 1,1 }, { 100,40 });
-			//_wave_path_finder.Find({ 1,1 }, { 100,40 });
-			//_wave_path_finder.Find({ 1,1 }, { 100,40 });
-			//_wave_path_finder.Find({ 1,1 }, { 100,40 });
-			//_wave_path_finder.Find({ 1,1 }, { 100,40 });
-			//_wave_path_finder.Find({ 1,1 }, { 100,40 });
-			//_wave_path_finder.Find({ 1,1 }, { 100,40 });
-			//_wave_path_finder.Find({ 1,1 }, { 100,40 });
-			//_wave_path_finder.Find({ 1,1 }, { 100,40 });
-		//	for (auto point : path)
-			//{
-			//	SetObject(point, FieldObjectType::Wall);
-			//}
-
-			//for (auto point : path)
-			//{
-			//	SetObject(point, FieldObjectType::Wall);
-			//}
-
-			//SetObject(tail_to_remove, FieldObjectType::Empty);
-			//SetObject(new_snake_head_position, FieldObjectType::Snake);
 
 			const auto end_time  = std::chrono::high_resolution_clock::now();
 			_action_time = static_cast<double>(std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count()) / 1000;

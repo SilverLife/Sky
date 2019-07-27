@@ -46,12 +46,6 @@ namespace SnakeGame
 			Shared::TrackedVariable<double, Shared::ConsoleHelper::LabelWrapper<double>> _action_time = 0;
 			Shared::TrackedVariable<int, Shared::ConsoleHelper::LabelWrapper<int>> _fps = 0;
 
-			//static inline const std::vector<Point> test_points{ {1,1}, {10,3}, {25,32}, {13,0} };
-			//static inline std::vector<Point> next_points{ { 0,0 },{ 0,0 },{ 0,0 },{ 0,0 } };
-
-			static inline const std::vector<Point> test_points{ {5,5},{ 15,5 },{ 5,15 },{ 15,15 },{ 17,8 } };
-			static inline std::vector<Point> next_points{ { 0,0 },{ 0,0 } ,{ 0,0 } ,{ 0,0 } ,{ 0,0 } };
-
 			inline void PrintObject(Point position, FieldObjectType object_type);
 
 			void MoveObject(Point position_from, Point position_to);
