@@ -7,6 +7,8 @@
 #include "Object\Snake.h"
 #include "Object\MovableWall.h"
 
+#include "Shared\Container\TrackedVariable.h"
+
 #include "Shared\ConsoleHelper\Form.h"
 
 #include <filesystem>
@@ -32,7 +34,7 @@ namespace SnakeGame
 
 			Shared::FieldData::Field<FieldObjectType, PointCoordsType> _field;
 
-			std::vector<PathFinder> _wave_path_finders;
+			PathFinder _wave_path_finder;
 			Object::Snake _snake;
 
 			std::vector<Object::MoveableWall> _moveable_walls;
@@ -40,6 +42,15 @@ namespace SnakeGame
 			bool _is_game_active = true;
 
 			std::unique_ptr<Shared::ConsoleHelper::Form> _info_form;
+
+			Shared::TrackedVariable<double, Shared::ConsoleHelper::LabelWrapper<double>> _action_time = 0;
+			Shared::TrackedVariable<int, Shared::ConsoleHelper::LabelWrapper<int>> _fps = 0;
+
+			//static inline const std::vector<Point> test_points{ {1,1}, {10,3}, {25,32}, {13,0} };
+			//static inline std::vector<Point> next_points{ { 0,0 },{ 0,0 },{ 0,0 },{ 0,0 } };
+
+			static inline const std::vector<Point> test_points{ {5,5},{ 15,5 },{ 5,15 },{ 15,15 },{ 17,8 } };
+			static inline std::vector<Point> next_points{ { 0,0 },{ 0,0 } ,{ 0,0 } ,{ 0,0 } ,{ 0,0 } };
 
 			inline void PrintObject(Point position, FieldObjectType object_type);
 

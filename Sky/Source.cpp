@@ -18,8 +18,8 @@ using namespace std;
 
 int main()
 {
-	SnakeGame::GameLogic::SnakeGame _game(Shared::BmpHelper::Bmp("Maps\\map2.bmp"));
-	//SnakeGame::GameLogic::SnakeGame _game(80,40,10);
+	//SnakeGame::GameLogic::SnakeGame _game(Shared::BmpHelper::Bmp("Maps\\map2.bmp"));
+	SnakeGame::GameLogic::SnakeGame _game(20,20,2);
 	_game.Init();
 
 	std::thread input_thread([&_game]()
@@ -44,7 +44,7 @@ int main()
 	while (_game.IsGameActive())
 	{
 		_game.Action();
-		_game.PrintField();
+		//_game.PrintField();
 		std::this_thread::sleep_for(std::chrono::microseconds(20000));
 	}
 

@@ -9,6 +9,8 @@
 
 #include <fstream>
 
+#include <chrono>
+
 using Shared::ConsoleHelper::Console;
 
 namespace SnakeGame
@@ -84,6 +86,11 @@ namespace SnakeGame
 				}
 
 				SetObject(pos, FieldObjectType::Wall);
+			}
+
+			for (auto point : test_points)
+			{
+				SetObject(point, FieldObjectType::Wall);
 			}
 		}
 
@@ -174,7 +181,8 @@ namespace SnakeGame
 		}
 		
 		SnakeGame::SnakeGame(PointCoordsType width, PointCoordsType height, uint snake_length)
-			: _field(width, height),			  
+			: _field(width, height),
+			  _wave_path_finder(_field),
 			  _snake(Point{ width / 2, height / 2 })
 		{
 			SetObject(_snake.HeadPosition(), FieldObjectType::Snake);
@@ -186,12 +194,13 @@ namespace SnakeGame
 			}
 
 			Shared::ConsoleHelper::DrawBorder({ 0,0 }, width + 1, height + 2);
-			GenerateWalls(1);
+			GenerateWalls(0);
 			//GenerateMoveableWalls(40);
 		}
 
 		SnakeGame::SnakeGame(Shared::BmpHelper::Bmp bmp)
 			: _field(bmp.Size()._width, bmp.Size()._height),
+			  _wave_path_finder(_field),
 			  _snake({ 0,0 })
 		{
 			const auto[width, height] = bmp.Size();
@@ -232,12 +241,13 @@ namespace SnakeGame
 
 		void SnakeGame::Init()
 		{
-			_info_form = std::make_unique<Shared::ConsoleHelper::Form>(Point{ _field.Size()._width + 2, 0 }, Shared::ConsoleHelper::Form::FormSize{ 40, 30 });
+			_info_form = std::make_unique<Shared::ConsoleHelper::Form>(Point{ 0, 50 }, Shared::ConsoleHelper::Form::FormSize{ 40, 30 });
+			//_info_form = std::make_unique<Shared::ConsoleHelper::Form>(Point{ _field.Size()._width + 2, 0 }, Shared::ConsoleHelper::Form::FormSize{ 40, 30 });
 			
-			for (int i = 0; i < 10; i++)
-			{
-				_wave_path_finders.emplace_back(_field);
-			}
+			auto& action_time_label = _info_form->AddLabel({ 1,1 });
+			_action_time.SetCallbackFunctor(Shared::ConsoleHelper::LabelWrapper<double>(&action_time_label, std::string("Action time (ms): ")));
+			auto& fps_label = _info_form->AddLabel({ 1,2 });
+			_fps.SetCallbackFunctor(Shared::ConsoleHelper::LabelWrapper<int>(&fps_label, std::string("FPS: ")));
 		}
 
 		SnakeGame::~SnakeGame()
@@ -270,7 +280,9 @@ namespace SnakeGame
 		}
 
 		void SnakeGame::Action()
-		{
+		{			
+			const auto start_time = std::chrono::high_resolution_clock::now();
+
 			MoveMoveableWalls();
 
 			if (_snake.Empty())
@@ -281,16 +293,28 @@ namespace SnakeGame
 
 			MoveSnake();
 			
-			std::vector<std::future<Point>> _path_finders_results;
-			for (auto& path_finder : _wave_path_finders)
+
+			for (auto point : next_points)
 			{
-				_path_finders_results.emplace_back(std::async(std::launch::async, [&path_finder]() {return path_finder.Find({ 1,1 }, { 100,40 }); }));
+				SetObject(point, FieldObjectType::Empty);
+			}
+			_wave_path_finder.FindNextPoints(_snake.HeadPosition(), test_points, next_points);
+			for (auto point : next_points)
+			{
+				SetObject(point, FieldObjectType::Snake);
 			}
 
-			for (auto& fut : _path_finders_results)
-			{
-				fut.get();
-			}
+
+			//std::vector<std::future<std::vector<Point>>> _path_finders_results;
+			//for (auto& path_finder : _wave_path_finders)
+			//{
+			//	_path_finders_results.emplace_back(std::async(std::launch::async, [&path_finder]() {return path_finder.Find({ 1,1 }, { 100,40 }); }));
+			//}
+			//
+			//for (auto& fut : _path_finders_results)
+			//{
+			//	fut.get();
+			//}
 			
 			//_wave_path_finder.Find({ 1,1 }, { 100,40 });
 			//_wave_path_finder.Find({ 1,1 }, { 100,40 });
@@ -314,6 +338,10 @@ namespace SnakeGame
 
 			//SetObject(tail_to_remove, FieldObjectType::Empty);
 			//SetObject(new_snake_head_position, FieldObjectType::Snake);
+
+			const auto end_time  = std::chrono::high_resolution_clock::now();
+			_action_time = static_cast<double>(std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count()) / 1000;
+			_fps = static_cast<int>(_action_time != 0 ? 1000 / _action_time : 0);
 		}
 
 		void SnakeGame::ChangeSnakeDirection(Point new_direction_delta)
