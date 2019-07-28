@@ -44,8 +44,6 @@ int main()
 	while (_game.IsGameActive())
 	{
 		_game.Action();
-		//_game.PrintField();
-		std::this_thread::sleep_for(std::chrono::microseconds(20000));
 	}
 
 	Shared::ConsoleHelper::Console().PrintString({ 10,50 }, "Game over!!! Press key");

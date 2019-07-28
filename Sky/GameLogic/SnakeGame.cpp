@@ -293,7 +293,7 @@ namespace SnakeGame
 
 			//_wave_path_finder.FindNextPoints(_snake.HeadPosition(), test_points, next_points);
 
-
+			std::this_thread::sleep_for(std::chrono::microseconds(12000));
 
 			const auto end_time  = std::chrono::high_resolution_clock::now();
 			_action_time = static_cast<double>(std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count()) / 1000;
