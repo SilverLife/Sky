@@ -206,7 +206,8 @@ namespace SnakeGame
 				{
 					auto& pixel = bmp.Pixel({ i,j });
 					
-					if (pixel == Shared::BmpHelper::PixelColors::Black)
+					//if (pixel == Shared::BmpHelper::PixelColors::Black)
+					if (pixel < Shared::BmpHelper::PixelColor{200, 200, 200})
 					{
 						SetObject({ i,j }, FieldObjectType::Wall);
 					}
@@ -232,6 +233,8 @@ namespace SnakeGame
 			}
 
 			Shared::ConsoleHelper::DrawBorder({ 0,0 }, width + 1, height + 2);
+			//GenerateWalls(20);
+			GenerateMoveableWalls(40);
 		}
 
 		void SnakeGame::Init()

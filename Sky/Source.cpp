@@ -18,8 +18,8 @@ using namespace std;
 
 int main()
 {
-	//SnakeGame::GameLogic::SnakeGame _game(Shared::BmpHelper::Bmp("Maps\\map2.bmp"));
-	SnakeGame::GameLogic::SnakeGame _game(70,40,5);
+	SnakeGame::GameLogic::SnakeGame _game(Shared::BmpHelper::Bmp("Maps\\map2.bmp"));
+	//SnakeGame::GameLogic::SnakeGame _game(70,40,5);
 	_game.Init();
 
 	std::thread input_thread([&_game]()
