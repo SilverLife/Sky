@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 #include <vector>
 #include <algorithm>
@@ -18,8 +18,8 @@ using namespace std;
 
 int main()
 {
-	SnakeGame::GameLogic::SnakeGame _game(Shared::BmpHelper::Bmp("Maps\\map2.bmp"));
-	//SnakeGame::GameLogic::SnakeGame _game(70,40,5);
+	//SnakeGame::GameLogic::SnakeGame _game(Shared::BmpHelper::Bmp("Maps\\map2.bmp"));
+	SnakeGame::GameLogic::SnakeGame _game(40,20,5);
 	_game.Init();
 
 	std::thread input_thread([&_game]()
@@ -30,7 +30,8 @@ int main()
 			ch = _getch();
 
 			switch (ch)
-			{
+			{   
+                case ' ': _game.ChangeSnakePause();             break;
 				case 'a': _game.ChangeSnakeDirection({ -1,0 }); break;
 				case 'w': _game.ChangeSnakeDirection({ 0,-1 }); break;
 				case 's': _game.ChangeSnakeDirection({ 0,1 }); break;

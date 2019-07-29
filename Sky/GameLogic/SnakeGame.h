@@ -13,7 +13,7 @@
 
 #include <filesystem>
 
-namespace fs = std::filesystem;
+namespace fs = std::experimental::filesystem;
 
 namespace SnakeGame
 {
@@ -39,6 +39,7 @@ namespace SnakeGame
 
 			std::vector<Object::MoveableWall> _moveable_walls;
 
+            bool _is_snake_paused = false;
 			bool _is_game_active = true;
 
 			std::unique_ptr<Shared::ConsoleHelper::Form> _info_form;
@@ -72,6 +73,8 @@ namespace SnakeGame
 			void PrintField() const;
 
 			void Action();
+
+            void ChangeSnakePause() { _is_snake_paused = !_is_snake_paused; }
 
 			void ChangeSnakeDirection(Point new_direction_delta);
 

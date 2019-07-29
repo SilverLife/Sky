@@ -189,8 +189,8 @@ namespace SnakeGame
 			}
 
 			Shared::ConsoleHelper::DrawBorder({ 0,0 }, width + 1, height + 2);
-			GenerateWalls(20);
-			GenerateMoveableWalls(40);
+			GenerateWalls(10);
+			GenerateMoveableWalls(10);
 		}
 
 		SnakeGame::SnakeGame(Shared::BmpHelper::Bmp bmp)
@@ -288,8 +288,10 @@ namespace SnakeGame
 				return;
 			}
 
-			MoveSnake();
-			
+            if (!_is_snake_paused)
+            {
+                MoveSnake();
+            }
 
 			//_wave_path_finder.FindNextPoints(_snake.HeadPosition(), test_points, next_points);
 
