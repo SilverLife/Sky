@@ -127,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\CommonDefines.h" />
+    <ClInclude Include="Shared\CommonStructs\Ticker.h" />
     <ClInclude Include="Shared\ConsoleHelper\PrintHelper.h" />
     <ClInclude Include="Object\MovableWall.h" />
     <ClInclude Include="Object\Snake.h" />

@@ -2,9 +2,12 @@
 #pragma once
 
 #include "Shared\Geometry\Point.h"
+#include "Shared\CommonStructs\Ticker.h"
 #include "Common\CommonDefines.h"
 
 #include <vector>
+
+using Shared::CommonStructs::TickerByte;
 
 namespace SnakeGame
 {
@@ -55,16 +58,13 @@ namespace SnakeGame
 		}
 
 		// Движущаяся стена. Двигается по определенному алгоритму, заданному массивом actions
-		class MoveableWall
+		class MoveableWall : public TickerByte
 		{
 			Point _start_position;
 			Point _cur_position;
 
 			uint _cur_action_id = 0;
 			uint _cur_action_subid = 0;
-
-			uint _ticks_to_move; // speed
-			uint _cur_action_tick = 0;
 
 			const std::vector<MoveableWallActions::MoveAction>& _actions;
 
@@ -82,16 +82,14 @@ namespace SnakeGame
 			MoveableWall(std::vector<MoveableWallActions::MoveAction>&& actions) = delete;
 
 			MoveableWall(Point position, uint ticks_to_move, const std::vector<MoveableWallActions::MoveAction>& actions)
-				: _start_position(position),
+				: TickerByte(ticks_to_move),
+				  _start_position(position),
 				  _cur_position(position),
-				  _ticks_to_move(ticks_to_move),
 				  _actions(actions)
 			{}
 			
 			void Move()
 			{
-				_cur_action_tick = 0;
-
 				_cur_position += _actions[_cur_action_id]._move_delta;
 				if (_cur_action_subid >= _actions[_cur_action_id]._count)
 				{
@@ -103,18 +101,7 @@ namespace SnakeGame
 					++_cur_action_subid;
 				}
 			}
-
-			bool PerformTick()
-			{
-				++_cur_action_tick;
-				if ( _cur_action_tick >= _ticks_to_move)
-				{
-					_cur_action_tick = 0;
-					return true;
-				}
-				return false;
-			}
-
+			
 			Point NextPosition() const
 			{
 				return _cur_position + _actions[_cur_action_id]._move_delta;

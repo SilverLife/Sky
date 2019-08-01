@@ -3,20 +3,25 @@
 
 #include "Shared\Container\RoundList.h"
 #include "Shared\Geometry\Point.h"
+#include "Shared\CommonStructs\Ticker.h"
+
 #include "Common\CommonDefines.h"
+
+using Shared::CommonStructs::TickerByte;
 
 namespace SnakeGame
 {
 	namespace Object
 	{
-		class Snake
+		class Snake : public TickerByte
 		{
 			Shared::Containers::RoundList<Point> _snake_parts;
 			Point _direction_delta;
 
 		public:
-			Snake(Point head_position)
-				: _direction_delta(-1,0)
+			Snake(Point head_position, uint8_t speed = 20)
+				: TickerByte(speed),
+				  _direction_delta(-1,0)
 			{
 				_snake_parts.PushAfterLast(head_position);
 			}

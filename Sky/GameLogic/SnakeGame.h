@@ -22,6 +22,8 @@ namespace SnakeGame
 		// Основной класс игры. Вся игра осуществляется через интерфейс этого класса.
 		class SnakeGame
 		{
+			static constexpr auto kActionMaxTime = std::chrono::microseconds(500);
+
 			enum class FieldObjectType : unsigned char
 			{
 				Empty = 0,
