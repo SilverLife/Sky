@@ -12,12 +12,13 @@
 #include <chrono>
 
 using Shared::ConsoleHelper::Console;
+using Time = std::chrono::high_resolution_clock;
+
 
 namespace SnakeGame
 {
 	namespace GameLogic
 	{
-
 		inline void SnakeGame::PrintObject(Point position, FieldObjectType object_type)
 		{
 			using Color = Shared::ConsoleHelper::Color;
@@ -107,12 +108,12 @@ namespace SnakeGame
 
 				switch (rand_result)
 				{
-				case 0: _moveable_walls.emplace_back(pos, 10, Object::MoveableWallActions::UpDown<5>()); break;
-				case 1: _moveable_walls.emplace_back(pos, 10, Object::MoveableWallActions::UpDown<15>()); break;
-				case 2: _moveable_walls.emplace_back(pos, 10, Object::MoveableWallActions::Rectangle<5>()); break;
-				case 3: _moveable_walls.emplace_back(pos, 10, Object::MoveableWallActions::Rectangle<25>()); break;
-				case 4: _moveable_walls.emplace_back(pos, 10, Object::MoveableWallActions::RightLeft<5>()); break;
-				case 5: _moveable_walls.emplace_back(pos, 10, Object::MoveableWallActions::RightLeft<45>()); break;
+				case 0: _moveable_walls.emplace_back(pos, std::rand() % 20 + 1, Object::MoveableWallActions::UpDown<5>()); break;
+				case 1: _moveable_walls.emplace_back(pos, std::rand() % 20 + 1, Object::MoveableWallActions::UpDown<15>()); break;
+				case 2: _moveable_walls.emplace_back(pos, std::rand() % 20 + 1, Object::MoveableWallActions::Rectangle<5>()); break;
+				case 3: _moveable_walls.emplace_back(pos, std::rand() % 20 + 1, Object::MoveableWallActions::Rectangle<25>()); break;
+				case 4: _moveable_walls.emplace_back(pos, std::rand() % 20 + 1, Object::MoveableWallActions::RightLeft<5>()); break;
+				case 5: _moveable_walls.emplace_back(pos, std::rand() % 20 + 1, Object::MoveableWallActions::RightLeft<45>()); break;
 				}
 
 			}
@@ -150,6 +151,11 @@ namespace SnakeGame
 
 		void SnakeGame::MoveSnake()
 		{
+			if (!_snake.PerformTick())
+			{
+				return;
+			}
+
 			const auto new_snake_head_position = _snake.HeadPosition() + _snake.DirectionDelta();
 			if (_field.IsOutOfField(new_snake_head_position))
 			{
@@ -277,8 +283,8 @@ namespace SnakeGame
 		}
 
 		void SnakeGame::Action()
-		{			
-			const auto start_time = std::chrono::high_resolution_clock::now();
+		{
+			const auto start_time = Time::now();
 
 			MoveMoveableWalls();
 
@@ -291,12 +297,13 @@ namespace SnakeGame
 			MoveSnake();
 			
 
-			//_wave_path_finder.FindNextPoints(_snake.HeadPosition(), test_points, next_points);
+			auto time = std::chrono::duration_cast<std::chrono::microseconds>(Time::now() - start_time);
+			if (time < kActionMaxTime)
+			{
+				std::this_thread::sleep_for(kActionMaxTime - time);
+			}
 
-			std::this_thread::sleep_for(std::chrono::microseconds(12000));
-
-			const auto end_time  = std::chrono::high_resolution_clock::now();
-			_action_time = static_cast<double>(std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time).count()) / 1000;
+			_action_time = static_cast<double>(std::chrono::duration_cast<std::chrono::microseconds>(Time::now() - start_time).count()) / 1000;
 			_fps = static_cast<int>(_action_time != 0 ? 1000 / _action_time : 0);
 		}
 
