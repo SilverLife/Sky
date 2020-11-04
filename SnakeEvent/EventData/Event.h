@@ -5,6 +5,11 @@
 
 namespace SnakeEvent
 {
+	namespace FieldData
+	{
+		class FieldObject;
+	}
+
 	namespace EventData
 	{
 		enum class EventType
@@ -12,6 +17,7 @@ namespace SnakeEvent
 			Move = 0,
 			FreezeEnemies = 1,
 			EnemySpeedIncrease = 2,
+			AddObject = 3,
 
 			EventsCount
 		};
@@ -35,6 +41,18 @@ namespace SnakeEvent
 				: Event(EventType::Move)
 				, _src_pos(src_pos)
 				, _dst_pos(dst_pos)
+			{}
+		};
+
+		struct EventAddObject : Event
+		{
+			Point _pos;
+			FieldData::FieldObject* _object;
+
+			EventAddObject(Point pos, FieldData::FieldObject* object)
+				: Event(EventType::AddObject)
+				, _pos(pos)
+				, _object(object)
 			{}
 		};
 	}

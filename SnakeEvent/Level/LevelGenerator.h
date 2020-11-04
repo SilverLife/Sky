@@ -6,6 +6,7 @@
 #include "../FieldData/Objects/Enemy.h"
 #include "../FieldData/Objects/FreezingFood.h"
 #include "../FieldData/Objects/EnemySpeedIncreaseFood.h"
+#include "../FieldData/Objects/CannonBullet.h"
 
 #include <memory>
 
@@ -69,6 +70,20 @@ namespace SnakeEvent
 				game_data->_field.AddObject(pos, new FieldData::EnemySpeedIncreaseFood);
 			}
 			
+			for (int i = 0; i < 3; i++)
+			{
+				const Point pos = { std::rand() % w, std::rand() % h };
+
+				if (!game_data->_field.IsEmpty(pos))
+				{
+					continue;
+				}
+
+				const auto cannon_bullet = new FieldData::CannonBullet(pos, kDeltas[std::rand() % 4]);
+				game_data->_field.AddObject(pos, cannon_bullet);
+				game_data->_action_manager.SubscribeToTick(cannon_bullet);
+			}
+
 			const Point player_pos = { std::rand() % w, std::rand() % h };
 			if (!game_data->_field.IsEmpty(player_pos))
 			{

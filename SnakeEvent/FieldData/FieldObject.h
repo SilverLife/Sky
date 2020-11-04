@@ -24,6 +24,15 @@ namespace SnakeEvent
 			// ???
 			virtual void OnTick(int tick_num) {};
 
+			virtual void OnPlaceToFieldFailure(Point pos) 
+			{
+				throw std::logic_error("Error");
+			};
+
+			// Возникает когда объект мувается за поле.
+			// Возвращаемое значение - нужно ли удалять объект
+			virtual bool OnMoveOutOfField(Point pos) { return false; }
+
 			// Вызывается, когда надо нарисовать данный объект в указанной точке
 			virtual void OnDraw(Point point_to_draw)
 			{
