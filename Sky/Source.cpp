@@ -13,13 +13,29 @@
 #include "Shared\ConsoleHelper\Form.h"
 
 #include "Shared\Container\TrackedVariable.h"
+#include "Object\Bonuses\Bonuses.h"
 
 using namespace std;
 
+#include "Object\PickupedObject.h"
+
+#include "Shared\FieldData\WavePathFinderCommon.h"
+
 int main()
 {
-	SnakeGame::GameLogic::SnakeGame _game(Shared::BmpHelper::Bmp("Maps\\map2.bmp"));
-	//SnakeGame::GameLogic::SnakeGame _game(70,40,5);
+	//Shared::TestWavePathFinderCommon();
+	//return 1;
+
+	//SnakeGame::Object::Bonus::AddTailBonus b({ 5,5 });
+	//
+	//b.Draw();
+	//
+	//
+	//std::system("pause");
+	//return 0;
+
+	//SnakeGame::GameLogic::SnakeGame _game(Shared::BmpHelper::Bmp("Maps\\map2.bmp"));
+	SnakeGame::GameLogic::SnakeGame _game(100,50,5);
 	_game.Init();
 
 	std::thread input_thread([&_game]()

@@ -32,7 +32,7 @@ namespace SnakeGame
 				Count
 			};
 
-			using PathFinder = Shared::FieldData::WavePathFinder<FieldObjectType, short>;
+			using PathFinder = Shared::FieldData::WavePathFinder<FieldObjectType, PointCoordsType>;
 
 			Shared::FieldData::Field<FieldObjectType, PointCoordsType> _field;
 
@@ -79,6 +79,11 @@ namespace SnakeGame
 
 			void Stop() { _is_game_active = false; }
 			bool IsGameActive() const { return _is_game_active; }
+
+			void IncreseSnaek()
+			{
+				//_s
+			}
 		};
 	}
 }

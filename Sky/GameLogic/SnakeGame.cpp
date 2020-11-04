@@ -136,6 +136,7 @@ namespace SnakeGame
 
 				if (_field.Object(new_position) == FieldObjectType::Snake)
 				{
+					continue;
 					SplitSnake(new_position);
 				}
 

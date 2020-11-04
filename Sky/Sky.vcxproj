@@ -127,6 +127,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\CommonDefines.h" />
+    <ClInclude Include="Object\Bonuses\Bonuses.h" />
+    <ClInclude Include="Object\PickupedObject.h" />
     <ClInclude Include="Shared\CommonStructs\Ticker.h" />
     <ClInclude Include="Shared\ConsoleHelper\PrintHelper.h" />
     <ClInclude Include="Object\MovableWall.h" />
@@ -139,6 +141,7 @@
     <ClInclude Include="Shared\Container\TrackedVariable.h" />
     <ClInclude Include="Shared\FieldData\Field.h" />
     <ClInclude Include="Shared\FieldData\WavePathFinder.h" />
+    <ClInclude Include="Shared\FieldData\WavePathFinderCommon.h" />
     <ClInclude Include="Shared\Geometry\Point.h" />
     <ClInclude Include="Shared\Geometry\RectangleSize.h" />
     <ClInclude Include="GameLogic\SnakeGame.h" />

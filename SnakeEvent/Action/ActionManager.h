@@ -1,0 +1,75 @@
+﻿// ☕ Привет
+#pragma once
+
+#include "../EventData/EventManager.h"
+#include "../FieldData/Field.h"
+#include <memory>
+
+namespace SnakeEvent
+{
+	namespace Action
+	{
+		class ActionManager
+		{
+			EventData::EventManager* const _event_manager;
+			FieldData::Field* const _field;
+
+			std::vector<FieldData::FieldObject*> _tick_subscribers;
+			int _tick_counter = 0;
+
+			void ProcessTick()
+			{
+				for (auto sub : _tick_subscribers)
+				{
+					sub->OnTick(_tick_counter);
+				}
+
+				_tick_counter++;
+			}
+
+			void ProcessEvent(EventData::Event* event)
+			{
+				if (event->_type == EventData::EventType::Move)
+				{
+					const auto event_move = static_cast<EventData::EventMove*>(event);
+					_field->MoveObject(event_move->_src_pos, event_move->_dst_pos);
+				}
+			}
+
+			void ProcessEvents()
+			{
+				auto events_count = _event_manager->EventsCount();
+
+				while (events_count > 0)
+				{
+					const auto event = _event_manager->PopEvent();
+
+					ProcessEvent(event);
+					--events_count;
+				}
+			}
+
+		public:
+			ActionManager(EventData::EventManager* event_manager,
+				          FieldData::Field* field)
+				: _event_manager(event_manager)
+				, _field(_field)
+			{}
+
+			void SubscribeToTick(FieldData::FieldObject* field_object)
+			{
+				_tick_subscribers.push_back(field_object);
+			}
+
+			void Run()
+			{
+				while (true)
+				{
+					ProcessTick();
+
+					ProcessEvents();
+				}
+			}
+		};
+	}
+}
