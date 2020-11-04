@@ -6,7 +6,7 @@
 
 int main()
 {
-	const auto game_data = SnakeEvent::Level::GenerateLevel(30, 20, 10, 10);
+	const auto game_data = SnakeEvent::Level::GenerateLevel(30, 20, 10, 4,5);
 
 	const auto InputThread = [&game_data]()
 	{

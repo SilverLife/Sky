@@ -18,6 +18,8 @@ namespace SnakeEvent
 			std::vector<FieldData::FieldObject*> _tick_subscribers;
 			int _tick_counter = 0;
 
+			std::vector<FieldData::FieldObject*> _event_subscribers[static_cast<int>(EventData::EventType::EventsCount)];
+
 			void ProcessTick()
 			{
 				for (auto sub : _tick_subscribers)
@@ -34,6 +36,13 @@ namespace SnakeEvent
 				{
 					const auto event_move = static_cast<EventData::EventMove*>(event);
 					_field->MoveObject(event_move->_src_pos, event_move->_dst_pos);
+				}
+				else
+				{
+					for (auto sub : _event_subscribers[static_cast<int>(event->_type)])
+					{
+						sub->OnEvent(event);
+					}
 				}
 			}
 
@@ -60,6 +69,11 @@ namespace SnakeEvent
 			void SubscribeToTick(FieldData::FieldObject* field_object)
 			{
 				_tick_subscribers.push_back(field_object);
+			}
+
+			void SubscribeToEvent(FieldData::FieldObject* field_object, EventData::EventType event_type)
+			{
+				_event_subscribers[static_cast<int>(event_type)].push_back(field_object);
 			}
 
 			void Run()

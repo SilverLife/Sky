@@ -3,6 +3,7 @@
 
 #include "../Common/Common.h"
 #include "../../Sky/Shared/ConsoleHelper/ConsoleHelper.h"
+#include "../EventData/Event.h"
 #include "IntersectionResult.h"
 
 namespace SnakeEvent
@@ -41,6 +42,8 @@ namespace SnakeEvent
 
 			// Вызывается, когда поле решает, что объект надо уничтожить
 			virtual void OnRemove() {}
+
+			virtual void OnEvent(EventData::Event* event) {}
 		};
 	}
 }

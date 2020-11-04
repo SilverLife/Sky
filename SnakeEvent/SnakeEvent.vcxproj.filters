@@ -62,5 +62,8 @@
     <ClInclude Include="FieldData\Objects\Enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FieldData\Objects\FreezingFood.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
