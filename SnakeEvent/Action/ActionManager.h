@@ -4,6 +4,7 @@
 #include "../EventData/EventManager.h"
 #include "../FieldData/Field.h"
 #include <memory>
+#include <thread>
 
 namespace SnakeEvent
 {
@@ -53,7 +54,7 @@ namespace SnakeEvent
 			ActionManager(EventData::EventManager* event_manager,
 				          FieldData::Field* field)
 				: _event_manager(event_manager)
-				, _field(_field)
+				, _field(field)
 			{}
 
 			void SubscribeToTick(FieldData::FieldObject* field_object)
@@ -68,6 +69,8 @@ namespace SnakeEvent
 					ProcessTick();
 
 					ProcessEvents();
+
+					std::this_thread::sleep_for(std::chrono::microseconds(5));
 				}
 			}
 		};

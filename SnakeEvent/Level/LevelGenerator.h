@@ -33,6 +33,8 @@ namespace SnakeEvent
 			game_data->_player = new FieldData::Player(player_pos);
 			game_data->_field.AddObject(player_pos, game_data->_player);
 
+			game_data->_action_manager.SubscribeToTick(game_data->_player);
+
 			return std::move(game_data);
 		}
 	}

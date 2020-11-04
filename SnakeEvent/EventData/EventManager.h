@@ -3,6 +3,7 @@
 
 #include "Event.h"
 
+#include "GlobalEventPusher.h"
 #include <queue>
 
 namespace SnakeEvent
@@ -13,6 +14,11 @@ namespace SnakeEvent
 		{
 			std::queue<Event*> _events;
 		public:
+			EventManager()
+			{
+				SetEventManager(this);
+			}
+
 			bool HasEvents() const { return !_events.empty(); }
 
 			int EventsCount() const { return _events.size(); }

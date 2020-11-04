@@ -1,6 +1,7 @@
 ﻿// ☕ Привет
 #pragma once
 
+#include "../Common/Common.h"
 
 namespace SnakeEvent
 {
@@ -22,10 +23,17 @@ namespace SnakeEvent
 
 		struct EventMove : Event
 		{
-			EventMove() { _type = EventType::Move; }
-
 			Point _src_pos;
 			Point _dst_pos;
+
+			EventMove(Point src_pos, Point dst_pos)
+				: _src_pos(src_pos)
+				, _dst_pos(dst_pos)
+			{ 
+				_type = EventType::Move; 
+			}
+
+
 		};
 	}
 }

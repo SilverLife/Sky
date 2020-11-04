@@ -19,10 +19,10 @@ int main()
 
 			switch (ch)
 			{
-			case 'a': game_data->_field.MoveObject(player_pos, player_pos + Point{-1,  0 });  break;
-			case 'w': game_data->_field.MoveObject(player_pos, player_pos + Point{ 0, -1 });  break;
-			case 's': game_data->_field.MoveObject(player_pos, player_pos + Point{ 0,  1 });  break;
-			case 'd': game_data->_field.MoveObject(player_pos, player_pos + Point{ 1,  0 });  break;
+			case 'a': game_data->_player->SetMovementDelta({-1,  0 });  break;
+			case 'w': game_data->_player->SetMovementDelta({ 0, -1 });  break;
+			case 's': game_data->_player->SetMovementDelta({ 0,  1 });  break;
+			case 'd': game_data->_player->SetMovementDelta({ 1,  0 });  break;
 			}
 
 		} while (ch != 27);
