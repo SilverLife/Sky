@@ -37,6 +37,11 @@ namespace SnakeEvent
 					const auto event_move = static_cast<EventData::EventMove*>(event);
 					_field->MoveObject(event_move->_src_pos, event_move->_dst_pos);
 				}
+				else if (event->_type == EventData::EventType::AddObject)
+				{
+					const auto event_add_object = static_cast<EventData::EventAddObject*>(event);
+					_field->AddObject(event_add_object->_pos, event_add_object->_object);
+				}
 				else
 				{
 					for (auto sub : _event_subscribers[static_cast<int>(event->_type)])

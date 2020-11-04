@@ -71,5 +71,8 @@
     <ClInclude Include="FieldData\FieldObjectWithPos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FieldData\Objects\CannonBullet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

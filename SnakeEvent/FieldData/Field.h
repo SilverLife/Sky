@@ -60,7 +60,8 @@ namespace SnakeEvent
 			{
 				if (_field_data.Object(pos) != nullptr)
 				{
-					throw 4;
+					object->OnPlaceToFieldFailure(pos);
+					return;
 				}
 
 				_field_data.SetObject(pos, object);
@@ -69,11 +70,6 @@ namespace SnakeEvent
 
 			void MoveObject(Point src_pos, Point dst_pos)
 			{
-				if (_field_data.IsOutOfField(dst_pos))
-				{
-					return;
-				}
-
 				if (_field_data.IsOutOfField(src_pos))
 				{
 					throw "Source pos is out of field";
@@ -88,6 +84,16 @@ namespace SnakeEvent
 
 				if (src_object == nullptr)
 				{
+					return;
+				}
+
+				if (_field_data.IsOutOfField(dst_pos))
+				{
+					const bool is_need_remove = src_object->OnMoveOutOfField(dst_pos);
+					if (is_need_remove)
+					{
+						KillObject(src_pos);
+					}
 					return;
 				}
 
