@@ -13,9 +13,13 @@ namespace SnakeEvent
 		class FieldObject
 		{
 			char _draw_symbol = ' ';
+			Shared::ConsoleHelper::Color _color;
 		public:
 			FieldObject() = default;
-			FieldObject(char draw_symbol) : _draw_symbol(draw_symbol) {}
+			FieldObject(char draw_symbol, Shared::ConsoleHelper::Color color = Shared::ConsoleHelper::Color::White) 
+				: _draw_symbol(draw_symbol) 
+				, _color(color)
+			{}
 
 			// ???
 			virtual void OnTick(int tick_num) {};
@@ -23,7 +27,7 @@ namespace SnakeEvent
 			// Вызывается, когда надо нарисовать данный объект в указанной точке
 			virtual void OnDraw(Point point_to_draw)
 			{
-				Shared::ConsoleHelper::Console().Print(point_to_draw, _draw_symbol);
+				Shared::ConsoleHelper::Console().Print(point_to_draw, _draw_symbol, _color);
 			}
 
 			// Вызывается, когда надо затереть объект в указанной точке

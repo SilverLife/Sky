@@ -10,13 +10,11 @@ namespace SnakeEvent
 	{
 		class Enemy : public FieldObjectWithPos
 		{
-			Point _pos;
-
 			int _freeze_counter = 0;
 			int _speed = 100;
 		public:
 			Enemy(Point pos)
-				: FieldObjectWithPos(pos, '@')
+				: FieldObjectWithPos(pos, '@', Shared::ConsoleHelper::Color::LightRed)
 			{}
 
 			void OnTick(int tick_num) override

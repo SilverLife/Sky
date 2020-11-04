@@ -11,12 +11,10 @@ namespace SnakeEvent
 	{
 		class Player : public FieldObjectWithPos
 		{
-			
 			Point _movement_delta{ 0,0 };
 		public:
-
 			Player(Point pos)
-				: FieldObjectWithPos(pos, '#')
+				: FieldObjectWithPos(pos, '#', Shared::ConsoleHelper::Color::Yellow)
 			{}
 
 			void OnRemove() override

@@ -17,8 +17,8 @@ namespace SnakeEvent
 				, _pos(pos)
 			{}
 
-			FieldObjectWithPos(Point pos, char draw_symbol)
-				: FieldObject(draw_symbol) 
+			FieldObjectWithPos(Point pos, char draw_symbol, Shared::ConsoleHelper::Color color)
+				: FieldObject(draw_symbol, color) 
 				, _pos(pos)
 			{}
 
