@@ -68,5 +68,8 @@
     <ClInclude Include="FieldData\Objects\EnemySpeedIncreaseFood.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FieldData\FieldObjectWithPos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

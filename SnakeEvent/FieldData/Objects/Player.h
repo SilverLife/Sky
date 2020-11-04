@@ -1,7 +1,7 @@
 ﻿// ☕ Привет
 #pragma once
 
-#include "../FieldObject.h"
+#include "../FieldObjectWithPos.h"
 #include "../../EventData/GlobalEventPusher.h"
 #include "Enemy.h"
 
@@ -9,21 +9,15 @@ namespace SnakeEvent
 {
 	namespace FieldData
 	{
-		class Player : public FieldObject
+		class Player : public FieldObjectWithPos
 		{
-			Point _pos;
+			
 			Point _movement_delta{ 0,0 };
 		public:
 
 			Player(Point pos)
-				: FieldObject('#')
-				, _pos(pos)
+				: FieldObjectWithPos(pos, '#')
 			{}
-
-			void OnMove(Point prev_pos, Point new_pos) override
-			{
-				_pos = new_pos;
-			}
 
 			void OnRemove() override
 			{	
@@ -64,8 +58,6 @@ namespace SnakeEvent
 				}
 				return 0; 
 			}
-
-			Point Pos() const { return _pos; }
 
 			void SetMovementDelta(Point point) { _movement_delta = point; }
 		};

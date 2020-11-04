@@ -1,14 +1,14 @@
 ﻿// ☕ Привет
 #pragma once
 
-#include "../FieldObject.h"
+#include "../FieldObjectWithPos.h"
 #include "../../EventData/GlobalEventPusher.h"
 
 namespace SnakeEvent
 {
 	namespace FieldData
 	{
-		class Enemy : public FieldObject
+		class Enemy : public FieldObjectWithPos
 		{
 			Point _pos;
 
@@ -16,14 +16,8 @@ namespace SnakeEvent
 			int _speed = 100;
 		public:
 			Enemy(Point pos)
-				: FieldObject('@')
-				, _pos(pos)
+				: FieldObjectWithPos(pos, '@')
 			{}
-
-			void OnMove(Point prev_pos, Point new_pos) override
-			{
-				_pos = new_pos;
-			}
 
 			void OnTick(int tick_num) override
 			{
