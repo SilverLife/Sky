@@ -127,6 +127,7 @@
     <ClInclude Include="FieldData\Field.h" />
     <ClInclude Include="FieldData\FieldObject.h" />
     <ClInclude Include="FieldData\IntersectionResult.h" />
+    <ClInclude Include="FieldData\Objects\Enemy.h" />
     <ClInclude Include="FieldData\Objects\Player.h" />
     <ClInclude Include="FieldData\Objects\Wall.h" />
     <ClInclude Include="GameData\GameData.h" />

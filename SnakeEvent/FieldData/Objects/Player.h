@@ -3,6 +3,7 @@
 
 #include "../FieldObject.h"
 #include "../../EventData/GlobalEventPusher.h"
+#include "Enemy.h"
 
 namespace SnakeEvent
 {
@@ -42,6 +43,26 @@ namespace SnakeEvent
 				}
 
 				EventData::PushEvent(new EventData::EventMove( _pos, _pos + _movement_delta ));
+			}
+
+			int OnActiveIntersect(FieldObject* intersected_object) override
+			{
+				if (dynamic_cast<Enemy*>(intersected_object) != nullptr)
+				{
+					// Наткнулись на врага
+					return IntersectResult::IntResIsDead;
+				}
+				return 0; 
+			}
+
+			int OnPassiveIntersect(FieldObject* intersected_object) override
+			{ 
+				if (dynamic_cast<Enemy*>(intersected_object) != nullptr)
+				{
+					// Враг наступил на нас
+					return IntersectResult::IntResIsDead;
+				}
+				return 0; 
 			}
 
 			Point Pos() const { return _pos; }
