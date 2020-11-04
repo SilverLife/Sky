@@ -5,6 +5,7 @@
 #include "../FieldData/Objects/Wall.h"
 #include "../FieldData/Objects/Enemy.h"
 #include "../FieldData/Objects/FreezingFood.h"
+#include "../FieldData/Objects/EnemySpeedIncreaseFood.h"
 
 #include <memory>
 
@@ -40,6 +41,7 @@ namespace SnakeEvent
 				game_data->_field.AddObject(pos, enemy);
 				game_data->_action_manager.SubscribeToTick(enemy);
 				game_data->_action_manager.SubscribeToEvent(enemy, EventData::EventType::FreezeEnemies);
+				game_data->_action_manager.SubscribeToEvent(enemy, EventData::EventType::EnemySpeedIncrease);
 			}
 
 
@@ -53,6 +55,18 @@ namespace SnakeEvent
 				}
 
 				game_data->_field.AddObject(pos, new FieldData::FreezingFood);
+			}
+
+			for (int i = 0; i < food_count; i++)
+			{
+				const Point pos = { std::rand() % w, std::rand() % h };
+
+				if (!game_data->_field.IsEmpty(pos))
+				{
+					continue;
+				}
+
+				game_data->_field.AddObject(pos, new FieldData::EnemySpeedIncreaseFood);
 			}
 			
 			const Point player_pos = { std::rand() % w, std::rand() % h };

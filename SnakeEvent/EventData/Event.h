@@ -11,6 +11,7 @@ namespace SnakeEvent
 		{
 			Move = 0,
 			FreezeEnemies = 1,
+			EnemySpeedIncrease = 2,
 
 			EventsCount
 		};

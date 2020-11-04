@@ -13,6 +13,7 @@ namespace SnakeEvent
 			Point _pos;
 
 			int _freeze_counter = 0;
+			int _speed = 100;
 		public:
 			Enemy(Point pos)
 				: FieldObject('@')
@@ -26,9 +27,7 @@ namespace SnakeEvent
 
 			void OnTick(int tick_num) override
 			{
-				const auto r = std::rand() % 100;
-
-				if (r > 1)
+				if (tick_num % _speed != 0)
 				{
 					return;
 				}
@@ -48,6 +47,10 @@ namespace SnakeEvent
 				if (event->_type == EventData::EventType::FreezeEnemies)
 				{
 					_freeze_counter = 50;
+				}
+				else if (event->_type == EventData::EventType::EnemySpeedIncrease)
+				{
+					_speed /= 2;
 				}
 			}
 		};

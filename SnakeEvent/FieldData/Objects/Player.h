@@ -27,7 +27,7 @@ namespace SnakeEvent
 
 			void OnRemove() override
 			{	
-				throw "Game Over";
+				//throw "Game Over";
 			}
 
 			void OnTick(int tick_num) override
