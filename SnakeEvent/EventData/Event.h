@@ -18,6 +18,8 @@ namespace SnakeEvent
 			FreezeEnemies = 1,
 			EnemySpeedIncrease = 2,
 			AddObject = 3,
+			GameOver,
+			Win,
 
 			EventsCount
 		};

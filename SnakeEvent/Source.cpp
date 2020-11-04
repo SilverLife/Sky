@@ -1,12 +1,17 @@
 
 #include "Level\LevelGenerator.h"
+#include "Level\LevelByMap.h"
 
 #include <thread>
 #include <conio.h>
 
 int main()
 {
-	const auto game_data = SnakeEvent::Level::GenerateLevel(50, 30, 10, 4,5);
+	//Shared::ConsoleHelper::Console().SetConsolePositionAndSize(10, 10, 1000, 1800);
+
+	Shared::ConsoleHelper::Console().SetPosition(200, 200);
+	//const auto game_data = SnakeEvent::Level::GenerateLevel(50, 30, 10, 4,5);
+	const auto game_data = SnakeEvent::Level::GenerateLevelFromMap();
 
 	const auto InputThread = [&game_data]()
 	{
@@ -23,6 +28,7 @@ int main()
 			case 'w': game_data->_player->SetMovementDelta({ 0, -1 });  break;
 			case 's': game_data->_player->SetMovementDelta({ 0,  1 });  break;
 			case 'd': game_data->_player->SetMovementDelta({ 1,  0 });  break;
+			case ' ': game_data->_player->SetMovementDelta({ 0,  0 });  break;
 			}
 
 		} while (ch != 27);

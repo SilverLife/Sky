@@ -74,5 +74,11 @@
     <ClInclude Include="FieldData\Objects\CannonBullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Level\LevelByMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FieldData\Objects\Win.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

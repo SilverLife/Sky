@@ -42,6 +42,18 @@ namespace SnakeEvent
 					const auto event_add_object = static_cast<EventData::EventAddObject*>(event);
 					_field->AddObject(event_add_object->_pos, event_add_object->_object);
 				}
+				else if (event->_type == EventData::EventType::GameOver)
+				{
+					Shared::ConsoleHelper::Console().PrintString({ 10,10 }, "Game over");
+					std::system("pause");
+					exit(0);
+				}
+				else if (event->_type == EventData::EventType::Win)
+				{
+					Shared::ConsoleHelper::Console().PrintString({ 10,10 }, "You win");
+					std::system("pause");
+					exit(0);
+				}
 				else
 				{
 					for (auto sub : _event_subscribers[static_cast<int>(event->_type)])

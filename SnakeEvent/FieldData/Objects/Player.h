@@ -4,6 +4,7 @@
 #include "../FieldObjectWithPos.h"
 #include "../../EventData/GlobalEventPusher.h"
 #include "Enemy.h"
+#include "CannonBullet.h"
 
 namespace SnakeEvent
 {
@@ -19,12 +20,12 @@ namespace SnakeEvent
 
 			void OnRemove() override
 			{	
-				//throw "Game Over";
+				EventData::PushEvent(new EventData::Event(EventData::EventType::GameOver));
 			}
 
 			void OnTick(int tick_num) override
 			{
-				if (tick_num % 40 != 0)
+				if (tick_num % 60 != 0)
 				{
 					return;
 				}
@@ -52,6 +53,10 @@ namespace SnakeEvent
 				if (dynamic_cast<Enemy*>(intersected_object) != nullptr)
 				{
 					// Враг наступил на нас
+					return IntersectResult::IntResIsDead;
+				}
+				else if (dynamic_cast<CannonBullet*>(intersected_object) != nullptr)
+				{
 					return IntersectResult::IntResIsDead;
 				}
 				return 0; 
