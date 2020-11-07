@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../GameData/GameData.h"
-#include "../FieldData/FieldObject.h"
+#include "../../Sky/Shared/EventGameEngine/FieldData/FieldObject.h"
 #include "../FieldData/Objects/Wall.h"
 #include "../FieldData/Objects/Enemy.h"
 #include "../FieldData/Objects/FreezingFood.h"

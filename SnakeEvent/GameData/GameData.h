@@ -1,10 +1,12 @@
 ﻿// ☕ Привет
 #pragma once
 
-#include "../FieldData/Field.h"
-#include "../Action/ActionManager.h"
-#include "../EventData/EventManager.h"
+#include "../../Sky/Shared/EventGameEngine/FieldData/Field.h"
+#include "../../Sky/Shared/EventGameEngine/ActionData/ActionManager.h"
+#include "../../Sky/Shared/EventGameEngine/EventData/EventManager.h"
 #include "../FieldData/Objects/Player.h"
+
+using namespace EventGameEngine;
 
 namespace SnakeEvent
 {
@@ -13,7 +15,7 @@ namespace SnakeEvent
 		class GameData
 		{
 		public:
-			FieldData::Field _field;
+			EventGameEngine::FieldData::Field _field;
 			Action::ActionManager _action_manager;
 			EventData::EventManager _event_manager;
 

@@ -1,10 +1,12 @@
 ﻿// ☕ Привет
 #pragma once
 
-#include "../FieldObjectWithPos.h"
-#include "../../EventData/GlobalEventPusher.h"
+#include "../../../Sky/Shared/EventGameEngine/FieldData/FieldObjectWithPos.h"
+#include "../../../Sky/Shared/EventGameEngine/EventData/GlobalEventPusher.h"
 #include "Enemy.h"
 #include "CannonBullet.h"
+
+using namespace EventGameEngine::FieldData;
 
 namespace SnakeEvent
 {

@@ -24,6 +24,9 @@
     <ClCompile Include="Shared\Container\RoundList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Shared\EventGameEngine\EventData\GlobalEventPusher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shared\Geometry\Point.h">
@@ -81,6 +84,33 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Shared\FieldData\WavePathFinderCommon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\EventGameEngine\FieldData\Field.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\EventGameEngine\FieldData\FieldObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\EventGameEngine\FieldData\FieldObjectWithPos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\EventGameEngine\FieldData\IntersectionResult.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\EventGameEngine\Common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\EventGameEngine\EventData\Event.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\EventGameEngine\EventData\EventManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\EventGameEngine\EventData\GlobalEventPusher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared\EventGameEngine\ActionData\ActionManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
