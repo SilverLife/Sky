@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../GameData/GameData.h"
+#include "../GameData/GameDataWithPlayer.h"
 #include "../../Sky/Shared/EventGameEngine/FieldData/FieldObject.h"
 #include "../FieldData/Objects/Wall.h"
 #include "../FieldData/Objects/Enemy.h"
@@ -14,9 +14,9 @@ namespace SnakeEvent
 {
 	namespace Level
 	{
-		std::unique_ptr<GameData::GameWithPlayer> GenerateLevel(PointCoordsType w, PointCoordsType h, int walls_count, int enemies_count, int food_count)
+		std::unique_ptr<GameWithPlayer> GenerateLevel(PointCoordsType w, PointCoordsType h, int walls_count, int enemies_count, int food_count)
 		{
-			auto game_data = std::make_unique<GameData::GameWithPlayer>(Size{ w, h });
+			auto game_data = std::make_unique<GameWithPlayer>(Size{ w, h });
 
 			for (int i = 0; i < walls_count; i++)
 			{

@@ -113,6 +113,9 @@
     <ClInclude Include="Shared\EventGameEngine\ActionData\ActionManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Shared\EventGameEngine\GameData\GameData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Maps\map1.bmp">

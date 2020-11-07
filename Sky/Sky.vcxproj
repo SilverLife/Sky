@@ -149,6 +149,7 @@
     <ClInclude Include="Shared\EventGameEngine\FieldData\FieldObject.h" />
     <ClInclude Include="Shared\EventGameEngine\FieldData\FieldObjectWithPos.h" />
     <ClInclude Include="Shared\EventGameEngine\FieldData\IntersectionResult.h" />
+    <ClInclude Include="Shared\EventGameEngine\GameData\GameData.h" />
     <ClInclude Include="Shared\FieldData\Field.h" />
     <ClInclude Include="Shared\FieldData\WavePathFinder.h" />
     <ClInclude Include="Shared\FieldData\WavePathFinderCommon.h" />

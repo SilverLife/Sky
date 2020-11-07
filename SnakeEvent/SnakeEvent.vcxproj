@@ -129,7 +129,7 @@
     <ClInclude Include="FieldData\Objects\Player.h" />
     <ClInclude Include="FieldData\Objects\Wall.h" />
     <ClInclude Include="FieldData\Objects\Win.h" />
-    <ClInclude Include="GameData\GameData.h" />
+    <ClInclude Include="GameData\GameDataWithPlayer.h" />
     <ClInclude Include="Level\LevelByMap.h" />
     <ClInclude Include="Level\LevelGenerator.h" />
   </ItemGroup>

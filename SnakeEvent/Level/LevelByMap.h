@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "../GameData/GameData.h"
+#include "../GameData/GameDataWithPlayer.h"
 #include "../../Sky/Shared/EventGameEngine/FieldData/FieldObject.h"
 #include "../FieldData/Objects/Wall.h"
 #include "../FieldData/Objects/Enemy.h"
@@ -41,12 +41,12 @@ namespace SnakeEvent
 			"U#                                               L#                 wwwwwwwW"
 		};
 
-		std::unique_ptr<GameData::GameWithPlayer> GenerateLevelFromMap()
+		std::unique_ptr<GameWithPlayer> GenerateLevelFromMap()
 		{
 			const PointCoordsType w = std::size(kMap[0]);
 			const PointCoordsType h = std::size(kMap);
 
-			auto game_data = std::make_unique<GameData::GameWithPlayer>(Size{ w, h });
+			auto game_data = std::make_unique<GameWithPlayer>(Size{ w, h });
 
 			std::vector<Point> key_positions;
 			std::vector<Point> door_positions;
