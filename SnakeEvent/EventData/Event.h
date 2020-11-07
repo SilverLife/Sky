@@ -20,6 +20,7 @@ namespace SnakeEvent
 			AddObject = 3,
 			GameOver,
 			Win,
+			RemoveObject,
 
 			EventsCount
 		};
@@ -55,6 +56,16 @@ namespace SnakeEvent
 				: Event(EventType::AddObject)
 				, _pos(pos)
 				, _object(object)
+			{}
+		};
+
+		struct EventRemoveObject : Event
+		{
+			Point _pos;
+
+			EventRemoveObject(Point pos)
+				: Event(EventType::RemoveObject)
+				, _pos(pos)
 			{}
 		};
 	}

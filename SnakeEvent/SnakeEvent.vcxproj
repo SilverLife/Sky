@@ -133,6 +133,7 @@
     <ClInclude Include="FieldData\Objects\Enemy.h" />
     <ClInclude Include="FieldData\Objects\EnemySpeedIncreaseFood.h" />
     <ClInclude Include="FieldData\Objects\FreezingFood.h" />
+    <ClInclude Include="FieldData\Objects\KeyDoor.h" />
     <ClInclude Include="FieldData\Objects\Player.h" />
     <ClInclude Include="FieldData\Objects\Wall.h" />
     <ClInclude Include="FieldData\Objects\Win.h" />

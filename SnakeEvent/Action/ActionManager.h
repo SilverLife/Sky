@@ -54,6 +54,11 @@ namespace SnakeEvent
 					std::system("pause");
 					exit(0);
 				}
+				else if (event->_type == EventData::EventType::RemoveObject)
+				{
+					const auto event_remove_object = static_cast<EventData::EventRemoveObject*>(event);
+					_field->KillObject(event_remove_object->_pos);
+				}
 				else
 				{
 					for (auto sub : _event_subscribers[static_cast<int>(event->_type)])

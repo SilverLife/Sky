@@ -80,5 +80,8 @@
     <ClInclude Include="FieldData\Objects\Win.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FieldData\Objects\KeyDoor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

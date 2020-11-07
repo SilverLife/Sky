@@ -8,6 +8,7 @@
 #include "../FieldData/Objects/EnemySpeedIncreaseFood.h"
 #include "../FieldData/Objects/CannonBullet.h"
 #include "../FieldData/Objects/Win.h"
+#include "../FieldData/Objects/KeyDoor.h"
 
 #include <memory>
 #include <string_view>
@@ -20,24 +21,24 @@ namespace SnakeEvent
 		static constexpr std::string_view kMap[] =
 		{
 			"P     #                  #                 L#                              L",
-			"                       # # #### ####### ####     ############### ###########",
+			"                       # # #### ####### ####K    ############### ###########",
 			"      #                #             L#     #   #                           ",
 			"## ###########         ########### ####     #  #                            ",
 			"             #    E    #              #  E    #           E                 ",
 			" ####### #####         #              #     ##                              ",
 			" #          L#                        #######              E                ",
-			" #           ###########                                                    ",
+			" #           ###########                                                   K",
 			" #R          #         #####################################################",
-			" #                       L#                #                                ",
+			" #                       L#                #                               K",
 			" ############# ### ###  ###                                      E          ",
 			"             # # # # #    #                #                                ",
 			" #   E       # # # # # #  #      E         #                                ",
-			" #           #U# #U# #U#  #                #    E               E           ",
+			" #           #U# #U# #U# K#                #    E               E           ",
 			" #           ### ### ######                #                                ",
-			" ###########              #                #                                ",
-			"            ############### ############### ####### #                       ",
+			" ###########             K#                #                                ",
+			"            ############### ###############K####### #                      K",
 			" #                                               L# ########################",
-			"U#                                               L#                        W"
+			"U#                                               L#                 wwwwwwwW"
 		};
 
 		std::unique_ptr<GameData::GameWithPlayer> GenerateLevelFromMap()
@@ -46,6 +47,9 @@ namespace SnakeEvent
 			const PointCoordsType h = std::size(kMap);
 
 			auto game_data = std::make_unique<GameData::GameWithPlayer>(Size{ w, h });
+
+			std::vector<Point> key_positions;
+			std::vector<Point> door_positions;
 
 			for (PointCoordsType x = 0; x < w; x++)
 			{
@@ -107,7 +111,26 @@ namespace SnakeEvent
 						const auto win = new FieldData::Win();
 						game_data->_field.AddObject(pos, win);
 					}
+					else if (symbol == 'w')
+					{
+						door_positions.push_back(pos);
+					}
+					else if (symbol == 'K')
+					{
+						key_positions.push_back(pos);
+					}
 				}
+			}
+
+			if (key_positions.size() != door_positions.size())
+			{
+				throw 4;
+			}
+
+			for (int i = 0; i < door_positions.size(); i++)
+			{
+				game_data->_field.AddObject(door_positions[i], new FieldData::Door);
+				game_data->_field.AddObject(key_positions[i], new FieldData::Key(door_positions[i]));
 			}
 
 			return std::move(game_data);
