@@ -96,6 +96,12 @@ namespace SnakeEvent
 						game_data->_field.AddObject(pos, cannon_bullet);
 						game_data->_action_manager.SubscribeToTick(cannon_bullet);
 					}
+					else if (symbol == 'U')
+					{
+						const auto cannon_bullet = new FieldData::CannonBullet(pos, { 0,-1 }, std::rand() % 20 + 150);
+						game_data->_field.AddObject(pos, cannon_bullet);
+						game_data->_action_manager.SubscribeToTick(cannon_bullet);
+					}
 					else if (symbol == 'W')
 					{
 						const auto win = new FieldData::Win();
