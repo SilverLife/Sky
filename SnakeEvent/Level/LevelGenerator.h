@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../GameData/GameData.h"
-#include "../FieldData/FieldObject.h"
+#include "../../Sky/Shared/EventGameEngine/FieldData/FieldObject.h"
 #include "../FieldData/Objects/Wall.h"
 #include "../FieldData/Objects/Enemy.h"
 #include "../FieldData/Objects/FreezingFood.h"
@@ -41,8 +41,8 @@ namespace SnakeEvent
 				const auto enemy = new FieldData::Enemy(pos);
 				game_data->_field.AddObject(pos, enemy);
 				game_data->_action_manager.SubscribeToTick(enemy);
-				game_data->_action_manager.SubscribeToEvent(enemy, EventData::EventType::FreezeEnemies);
-				game_data->_action_manager.SubscribeToEvent(enemy, EventData::EventType::EnemySpeedIncrease);
+				game_data->_action_manager.SubscribeToEvent(enemy, CustomEventType::FreezeEnemies);
+				game_data->_action_manager.SubscribeToEvent(enemy, CustomEventType::EnemySpeedIncrease);
 			}
 
 

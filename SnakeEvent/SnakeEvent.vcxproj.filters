@@ -18,20 +18,11 @@
     <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EventData\GlobalEventPusher.cpp">
+    <ClCompile Include="..\Sky\Shared\EventGameEngine\EventData\GlobalEventPusher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FieldData\FieldObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\Common.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FieldData\Field.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FieldData\Objects\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -41,22 +32,7 @@
     <ClInclude Include="Level\LevelGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FieldData\IntersectionResult.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EventData\Event.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EventData\EventManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Action\ActionManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GameData\GameData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EventData\GlobalEventPusher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FieldData\Objects\Enemy.h">
@@ -66,9 +42,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FieldData\Objects\EnemySpeedIncreaseFood.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FieldData\FieldObjectWithPos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FieldData\Objects\CannonBullet.h">
@@ -81,6 +54,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FieldData\Objects\KeyDoor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EventData\EventType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

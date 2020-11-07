@@ -1,10 +1,12 @@
 ﻿// ☕ Привет
 #pragma once
 
-#include "../FieldObjectWithPos.h"
-#include "../../EventData/GlobalEventPusher.h"
+#include "../../../Sky/Shared/EventGameEngine/FieldData/FieldObjectWithPos.h"
+#include "../../../Sky/Shared/EventGameEngine/EventData/GlobalEventPusher.h"
 #include "Enemy.h"
 #include "CannonBullet.h"
+
+using namespace EventGameEngine::FieldData;
 
 namespace SnakeEvent
 {
@@ -20,7 +22,7 @@ namespace SnakeEvent
 
 			void OnRemove() override
 			{	
-				EventData::PushEvent(new EventData::Event(EventData::EventType::GameOver));
+				EventData::PushEvent(new EventData::Event(EventData::ActionEventType::GameOver));
 			}
 
 			void OnTick(int tick_num) override
@@ -35,7 +37,7 @@ namespace SnakeEvent
 					return;
 				}
 
-				EventData::PushEvent(new EventData::EventMove( _pos, _pos + _movement_delta ));
+				EventData::PushEvent(new EventData::EventMoveObject( _pos, _pos + _movement_delta ));
 			}
 
 			int OnActiveIntersect(FieldObject* intersected_object) override

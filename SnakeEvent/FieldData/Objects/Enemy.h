@@ -1,8 +1,11 @@
 ﻿// ☕ Привет
 #pragma once
 
-#include "../FieldObjectWithPos.h"
-#include "../../EventData/GlobalEventPusher.h"
+#include "../../../Sky/Shared/EventGameEngine/FieldData/FieldObjectWithPos.h"
+#include "../../../Sky/Shared/EventGameEngine/EventData/GlobalEventPusher.h"
+#include "../../EventData/EventType.h"
+
+using namespace EventGameEngine::FieldData;
 
 namespace SnakeEvent
 {
@@ -31,16 +34,16 @@ namespace SnakeEvent
 				}
 				
 				const auto delta_num = std::rand() % std::size(kDeltas);
-				EventData::PushEvent(new EventData::EventMove(_pos, _pos + kDeltas[delta_num]));
+				EventData::PushEvent(new EventData::EventMoveObject(_pos, _pos + kDeltas[delta_num]));
 			}
 
 			void OnEvent(EventData::Event* event) override
 			{
-				if (event->_type == EventData::EventType::FreezeEnemies)
+				if (event->_type == CustomEventType::FreezeEnemies)
 				{
 					_freeze_counter = 50;
 				}
-				else if (event->_type == EventData::EventType::EnemySpeedIncrease)
+				else if (event->_type == CustomEventType::EnemySpeedIncrease)
 				{
 					_speed /= 2;
 				}

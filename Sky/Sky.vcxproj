@@ -123,6 +123,7 @@
   <ItemGroup>
     <ClCompile Include="GameLogic\SnakeGame.cpp" />
     <ClCompile Include="Shared\Container\RoundList.cpp" />
+    <ClCompile Include="Shared\EventGameEngine\EventData\GlobalEventPusher.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +140,15 @@
     <ClInclude Include="Shared\ConsoleHelper\Label.h" />
     <ClInclude Include="Shared\Container\RoundList.h" />
     <ClInclude Include="Shared\Container\TrackedVariable.h" />
+    <ClInclude Include="Shared\EventGameEngine\ActionData\ActionManager.h" />
+    <ClInclude Include="Shared\EventGameEngine\Common.h" />
+    <ClInclude Include="Shared\EventGameEngine\EventData\Event.h" />
+    <ClInclude Include="Shared\EventGameEngine\EventData\EventManager.h" />
+    <ClInclude Include="Shared\EventGameEngine\EventData\GlobalEventPusher.h" />
+    <ClInclude Include="Shared\EventGameEngine\FieldData\Field.h" />
+    <ClInclude Include="Shared\EventGameEngine\FieldData\FieldObject.h" />
+    <ClInclude Include="Shared\EventGameEngine\FieldData\FieldObjectWithPos.h" />
+    <ClInclude Include="Shared\EventGameEngine\FieldData\IntersectionResult.h" />
     <ClInclude Include="Shared\FieldData\Field.h" />
     <ClInclude Include="Shared\FieldData\WavePathFinder.h" />
     <ClInclude Include="Shared\FieldData\WavePathFinderCommon.h" />

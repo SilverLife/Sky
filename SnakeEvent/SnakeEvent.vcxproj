@@ -116,19 +116,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="EventData\GlobalEventPusher.cpp" />
+    <ClCompile Include="..\Sky\Shared\EventGameEngine\EventData\GlobalEventPusher.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Action\ActionManager.h" />
-    <ClInclude Include="Common\Common.h" />
-    <ClInclude Include="EventData\Event.h" />
-    <ClInclude Include="EventData\EventManager.h" />
-    <ClInclude Include="EventData\GlobalEventPusher.h" />
-    <ClInclude Include="FieldData\Field.h" />
-    <ClInclude Include="FieldData\FieldObject.h" />
-    <ClInclude Include="FieldData\FieldObjectWithPos.h" />
-    <ClInclude Include="FieldData\IntersectionResult.h" />
+    <ClInclude Include="EventData\EventType.h" />
     <ClInclude Include="FieldData\Objects\CannonBullet.h" />
     <ClInclude Include="FieldData\Objects\Enemy.h" />
     <ClInclude Include="FieldData\Objects\EnemySpeedIncreaseFood.h" />

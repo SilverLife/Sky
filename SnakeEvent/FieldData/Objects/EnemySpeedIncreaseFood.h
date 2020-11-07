@@ -1,10 +1,13 @@
 ﻿// ☕ Привет
 #pragma once
 
-#include "../FieldObject.h"
-#include "../../EventData/GlobalEventPusher.h"
+#include "../../../Sky/Shared/EventGameEngine/FieldData/FieldObjectWithPos.h"
+#include "../../../Sky/Shared/EventGameEngine/EventData/GlobalEventPusher.h"
+
 #include "Enemy.h"
 #include "Player.h"
+
+using namespace EventGameEngine::FieldData;
 
 namespace SnakeEvent
 {
@@ -21,7 +24,7 @@ namespace SnakeEvent
 			{
 				if (dynamic_cast<Enemy*>(intersected_object) != nullptr)
 				{
-					EventData::PushEvent(new EventData::Event(EventData::EventType::EnemySpeedIncrease));
+					EventData::PushEvent(new EventData::Event(CustomEventType::EnemySpeedIncrease));
 					return IntersectResult::IntResIsDead | IntersectResult::IntResIsMove;
 				}
 				if (dynamic_cast<Player*>(intersected_object) != nullptr)

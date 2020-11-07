@@ -1,8 +1,10 @@
 ﻿// ☕ Привет
 #pragma once
 
-#include "../FieldObjectWithPos.h"
-#include "../../EventData/GlobalEventPusher.h"
+#include "../../../Sky/Shared/EventGameEngine/FieldData/FieldObjectWithPos.h"
+#include "../../../Sky/Shared/EventGameEngine/EventData/GlobalEventPusher.h"
+
+using namespace EventGameEngine::FieldData;
 
 namespace SnakeEvent
 {
@@ -44,7 +46,7 @@ namespace SnakeEvent
 					return;
 				}
 
-				EventData::PushEvent(new EventData::EventMove(_pos, _pos + _delta));
+				EventData::PushEvent(new EventData::EventMoveObject(_pos, _pos + _delta));
 			}
 
 			int OnActiveIntersect(FieldObject* intersected_object) override
