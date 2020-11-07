@@ -23,7 +23,7 @@ namespace SnakeEvent
 			{ 
 				if (dynamic_cast<Player*>(intersected_object) != nullptr)
 				{
-					EventData::PushEvent(new EventData::Event(EventData::EventType::FreezeEnemies));
+					EventData::PushEvent(new EventData::Event(CustomEventType::FreezeEnemies));
 					return IntersectResult::IntResIsDead | IntersectResult::IntResIsMove;
 				}
 				return 0; 

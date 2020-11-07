@@ -21,7 +21,7 @@ namespace SnakeEvent
 			{
 				if (dynamic_cast<Player*>(intersected_object) != nullptr)
 				{
-					EventData::PushEvent(new EventData::Event(EventData::EventType::Win));
+					EventData::PushEvent(new EventData::Event(EventData::ActionEventType::Win));
 					return IntersectResult::IntResIsDead;
 				}
 				return 0;

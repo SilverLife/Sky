@@ -77,8 +77,8 @@ namespace SnakeEvent
 						const auto enemy = new FieldData::Enemy(pos);
 						game_data->_field.AddObject(pos, enemy);
 						game_data->_action_manager.SubscribeToTick(enemy);
-						game_data->_action_manager.SubscribeToEvent(enemy, EventData::EventType::FreezeEnemies);
-						game_data->_action_manager.SubscribeToEvent(enemy, EventData::EventType::EnemySpeedIncrease);
+						game_data->_action_manager.SubscribeToEvent(enemy, CustomEventType::FreezeEnemies);
+						game_data->_action_manager.SubscribeToEvent(enemy, CustomEventType::EnemySpeedIncrease);
 					}
 					else if (symbol == 'F')
 					{

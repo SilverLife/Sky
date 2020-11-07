@@ -46,7 +46,7 @@ namespace SnakeEvent
 					return;
 				}
 
-				EventData::PushEvent(new EventData::EventMove(_pos, _pos + _delta));
+				EventData::PushEvent(new EventData::EventMoveObject(_pos, _pos + _delta));
 			}
 
 			int OnActiveIntersect(FieldObject* intersected_object) override

@@ -56,5 +56,8 @@
     <ClInclude Include="FieldData\Objects\KeyDoor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="EventData\EventType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

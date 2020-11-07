@@ -22,7 +22,7 @@ namespace SnakeEvent
 
 			void OnRemove() override
 			{	
-				EventData::PushEvent(new EventData::Event(EventData::EventType::GameOver));
+				EventData::PushEvent(new EventData::Event(EventData::ActionEventType::GameOver));
 			}
 
 			void OnTick(int tick_num) override
@@ -37,7 +37,7 @@ namespace SnakeEvent
 					return;
 				}
 
-				EventData::PushEvent(new EventData::EventMove( _pos, _pos + _movement_delta ));
+				EventData::PushEvent(new EventData::EventMoveObject( _pos, _pos + _movement_delta ));
 			}
 
 			int OnActiveIntersect(FieldObject* intersected_object) override

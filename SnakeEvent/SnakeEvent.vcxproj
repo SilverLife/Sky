@@ -120,6 +120,7 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EventData\EventType.h" />
     <ClInclude Include="FieldData\Objects\CannonBullet.h" />
     <ClInclude Include="FieldData\Objects\Enemy.h" />
     <ClInclude Include="FieldData\Objects\EnemySpeedIncreaseFood.h" />

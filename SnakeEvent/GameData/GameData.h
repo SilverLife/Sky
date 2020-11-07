@@ -16,7 +16,7 @@ namespace SnakeEvent
 		{
 		public:
 			EventGameEngine::FieldData::Field _field;
-			Action::ActionManager _action_manager;
+			Action::ActionManager<CustomEventType::EventsCount> _action_manager;
 			EventData::EventManager _event_manager;
 
 			GameData(Size field_size)
